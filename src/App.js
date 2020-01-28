@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import PropTypes from "prop-types";
 
-function App() {
+const Person = ({ img, name, age }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <article>
+      <img src={img} alt="person" />
+      <h4>name : {name}</h4>
+      <h4>age: {age}</h4>
+    </article>
   );
+};
+Person.propTypes = {
+  img: PropTypes.string,
+  name: PropTypes.string,
+  age: PropTypes.number
+};
+class PersonList extends Component {
+  state = {
+    people: [
+      {
+        id: 1,
+        img: "https://randomuser.me/api/portraits/thumb/men/65.jpg",
+        name: "john",
+        age: 24
+      },
+      {
+        id: 2,
+        img: "https://randomuser.me/api/portraits/thumb/men/34.jpg",
+        name: "bob",
+        age: 27
+      }
+    ]
+  };
+  render() {
+    return (
+      <section>
+        {this.state.people.map(person => (
+          <Person
+            key={person.id}
+            img={person.img}
+            name={person.name}
+            age={person.age}
+          />
+        ))}
+      </section>
+    );
+  }
 }
-
-export default App;
+export default class App extends Component {
+  render() {
+    return (
+      <section>
+        <PersonList />
+      </section>
+    );
+  }
+}
