@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-
-export default class App extends Component {
-  render() {
-    return <Form />;
-  }
-}
+//uncontrolled inputs
 
 class Form extends Component {
   state = {
@@ -14,36 +9,55 @@ class Form extends Component {
     people: []
   };
   handleChange = event => {
-    // console.log(event);
-    console.log(event.target.name);
-    console.log(event.target.value);
+    // console.log(event.target);
+    // console.log(event.target.name);
+    // console.log(event.target.value);
 
-    if (event.target.name == "firstName") {
-      const textValue = event.target.value;
+    // if (event.target.name === "firstName") {
+    //   const textValue = event.target.value;
+
+    //   this.setState({
+    //     firstName: textValue
+    //   });
+    // }
+    const value = event.target.value;
+    this.setState({
+      [event.target.name]: value
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const firstName = this.state.firstName;
+    const lastName = this.state.lastName;
+    if (firstName.length > 0 && lastName.length > 0) {
+      const person = ` ${firstName} ${lastName} `;
       this.setState({
-        firstName: textValue
+        people: [...this.state.people, person],
+        firstName: "",
+        lastName: ""
       });
     }
   };
+
   render() {
     return (
       <section>
         <article>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <input
               type="text"
               name="firstName"
               value={this.state.firstName}
               onChange={this.handleChange}
             />
-            <input type="text" name="lastName" />
-            <button
-              type="submit"
-              value={this.state.firstName}
+            <input
+              type="text"
+              name="lastName"
+              value={this.state.lastName}
               onChange={this.handleChange}
-            >
-              Submit
-            </button>
+            />
+            <button type="submit">submit</button>
           </form>
         </article>
         <article>
@@ -54,3 +68,11 @@ class Form extends Component {
     );
   }
 }
+
+class App extends Component {
+  render() {
+    return <Form />;
+  }
+}
+
+export default App;
