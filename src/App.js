@@ -9,13 +9,16 @@ class Counter extends Component {
   };
   handleIncrease = () => {
     console.log("called forst", this.state.count);
-    this.setState({
-      count: this.state.count + 1
-    });
-    this.setState({
-      count: this.state.count + 2
-    });
-    console.log("called second:", this.state.count);
+    this.setState(
+      {
+        count: this.state.count + 1
+      },
+      () => console.log("called second", this.state.count)
+    );
+    // this.setState({
+    //   count: this.state.count + 2
+    // });
+    console.log("called third:", this.state.count);
   };
 
   render() {
