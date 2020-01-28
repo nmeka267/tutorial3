@@ -8,9 +8,11 @@ class Form extends Component {
     const name = this.refs.myName;
     console.log(name);
     const nameValue = name.value;
+    const email = this.email.value;
     const text = this.refs.myText;
+    const textValue = text.textContent;
     text.style.color = "red";
-    console.log(nameValue, email, text);
+    console.log(nameValue, email, textValue);
   };
   render() {
     return (
@@ -24,7 +26,7 @@ class Form extends Component {
           >
             submit
           </button>
-          <p>Hello uncontrolled inputss</p>
+          <p ref="myText">Hello uncontrolled inputss</p>
         </form>
       </section>
     );
