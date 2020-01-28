@@ -1,41 +1,40 @@
 import React, { Component } from "react";
 import "./App.css";
+import { readdirSync } from "fs";
 //uncontrolled inputs
 
-class Form extends Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    const name = this.refs.myName;
-    console.log(name);
-    const nameValue = name.value;
-    const email = this.email.value;
-    const text = this.refs.myText;
-    const textValue = text.textContent;
-    text.style.color = "red";
-    console.log(nameValue, email, textValue);
+class Counter extends Component {
+  state = {
+    count: 0
   };
+  handleIncrease = () => {
+    console.log("called forst", this.state.count);
+    this.setState({
+      count: this.state.count + 1
+    });
+    this.setState({
+      count: this.state.count + 2
+    });
+    console.log("called second:", this.state.count);
+  };
+
   render() {
     return (
-      <section>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" ref="myName" />
-          <input type="email" ref={apple => (this.email = apple)} />
-          <button
-            type="
-          submit"
-          >
-            submit
+      <React.Fragment>
+        <div style={{ margin: "3rem", fontSize: "2rem" }}>
+          <button type="button" onClick={this.handleIncrease}>
+            increase
           </button>
-          <p ref="myText">Hello uncontrolled inputss</p>
-        </form>
-      </section>
+          <span style={{ margin: "1rem" }}>Count{this.state.count}</span>
+          <button type="button">decrease</button>
+        </div>
+      </React.Fragment>
     );
   }
 }
-
 class App extends Component {
   render() {
-    return <Form />;
+    return <Counter amount="2" />;
   }
 }
 
