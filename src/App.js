@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import "./App.css";
 import PropTypes from "prop-types";
 
-const Person = ({ img, name, age }) => {
+const Person = ({ img, name, age, info }) => {
   return (
     <article>
       <img src={img} alt="person" />
       <h4>name : {name}</h4>
       <h4>age: {age}</h4>
+      <h4>info: {info}</h4>
     </article>
   );
 };
 Person.propTypes = {
-  img: PropTypes.string,
-  name: PropTypes.string,
-  age: PropTypes.number
+  img: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired
 };
 class PersonList extends Component {
   state = {
@@ -27,9 +28,16 @@ class PersonList extends Component {
       },
       {
         id: 2,
-        img: "https://randomuser.me/api/portraits/thumb/men/34.jpg",
-        name: "bob",
+        // img: "https://randomuser.me/api/portraits/thumb/men/34.jpg",
+        // name: "bob",
         age: 27
+      },
+      {
+        id: 3,
+        img: "https://randomuser.me/api/portraits/thumb/men/34.jpg",
+        name: "Naveen Meka",
+        age: 27,
+        info: "some info about peter"
       }
     ]
   };
@@ -42,6 +50,7 @@ class PersonList extends Component {
             img={person.img}
             name={person.name}
             age={person.age}
+            info={person.info}
           />
         ))}
       </section>
