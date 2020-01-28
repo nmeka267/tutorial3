@@ -17,6 +17,12 @@ Person.propTypes = {
   name: PropTypes.string.isRequired,
   age: PropTypes.number.isRequired
 };
+Person.defaultProps = {
+  img: "https://randomuser.me/api/portraits/thumb/men/65.jpg",
+  name: "Meka default",
+  age: 27,
+  info: "default info about person"
+};
 class PersonList extends Component {
   state = {
     people: [
@@ -28,8 +34,8 @@ class PersonList extends Component {
       },
       {
         id: 2,
-        // img: "https://randomuser.me/api/portraits/thumb/men/34.jpg",
-        // name: "bob",
+        img: "https://randomuser.me/api/portraits/thumb/men/34.jpg",
+        name: "bob",
         age: 27
       },
       {
