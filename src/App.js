@@ -20,6 +20,19 @@ class Counter extends Component {
     // });
     console.log("called third:", this.state.count);
   };
+  handleDecrease = () => {
+   // console.log("called forst", this.state.count);
+    this.setState(()
+      {
+        count: this.state.count + 1
+      },
+      () => console.log("called second", this.state.count)
+    );
+    // this.setState({
+    //   count: this.state.count + 2
+    // });
+    console.log("called third:", this.state.count);
+  };
 
   render() {
     return (
@@ -29,7 +42,9 @@ class Counter extends Component {
             increase
           </button>
           <span style={{ margin: "1rem" }}>Count{this.state.count}</span>
-          <button type="button">decrease</button>
+          <button type="button" onClick={this.handleDecrease}>
+            decrease
+          </button>
         </div>
       </React.Fragment>
     );
